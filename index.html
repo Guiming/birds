@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<!--import the hosted version of Leaflet-->
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+		
+		<!--google-->
+		<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+		<script src="js/leaflet-google.js"></script>
+
+		<!--import my css files-->
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<div id="title">Geospatial Database and Analysis</div>
+		<div id="queryPanel">
+			<button class="button" onclick="addLayerGeoJSON()">Add GeoJSON Layer</button>
+			<button class="button" onclick="removeLayerGeoJSON()">Remove GeoJSON Layer</button>
+		</div>
+		<div id="map"></div>
+		<div id="attribution"></div>
+
+		<script src="data/earthquake.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>
