@@ -15,13 +15,17 @@
 	<body>
 		<div id="title">Geospatial Database and Analysis</div>
 		<div id="queryPanel">
-			<button class="button" onclick="addLayerGeoJSON()">Add GeoJSON Layer</button>
-			<button class="button" onclick="removeLayerGeoJSON()">Remove GeoJSON Layer</button>
+			<form id="geojsonLayerVisibility" action=>
+				<h4>GeoJSON Layer</h4>
+				<input id="on" type="radio" name="geojsonLayer" value="on" checked onclick=setVisibility()>ON
+				<input id="off" type="radio" name="geojsonLayer" value="off" onclick=setVisibility()>OFF
+			</form>
 		</div>
 		<div id="map"></div>
 		<div id="attribution"></div>
 
 		<script src="data/earthquake.js"></script>
+		<script src="data/eBird_efforts_China.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

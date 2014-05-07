@@ -9,9 +9,13 @@
 
 #queryPanel {
 	width: 20%;
-	height: 92%;
+	height: 92%;	
 	background-color: #eee5c7;
 	float: left;
+}
+
+#geojsonLayerVisibility {
+	padding-left: 1em;
 }
 
 #map {
