@@ -6,26 +6,125 @@
 		
 		<!--google-->
 		<script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
-		<script src="js/leaflet-google.js"></script>
+		<script src="lib/leaflet-google.js"></script>
+		
+		<!--jQuery, jQuery UI-->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 		<!--import my css files-->
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 
 	<body>
-		<div id="title">Geospatial Database and Analysis</div>
+		<div id="title">eBird Database Query and Visualization</div>
 		<div id="queryPanel">
-			<form id="geojsonLayerVisibility" action=>
-				<h4>GeoJSON Layer</h4>
-				<input id="on" type="radio" name="geojsonLayer" value="on" checked onclick=setVisibility()>ON
-				<input id="off" type="radio" name="geojsonLayer" value="off" onclick=setVisibility()>OFF
-			</form>
+			<div id="tabs">
+			<ul>
+				<li><a href="#query"><span>Query</span></a></li>
+				<li><a href="#visualization"><span>Visualization</span></a></li>
+  			</ul>
+			<div id="query">
+				<div id="sections">
+					<h3>Basic</h3>
+					  <div id="basicQuery">
+						  <label for="country">Country: </label>
+						  <input id="country" type="text" value="China">
+						  
+						  <label for="province">Province: </label>
+						  <input id="province" type="text" value="Beijing">
+						  
+						  <label for="protocol">Protocol type: </label>
+						  <input id="protocol" type="text" value="eBird - Casual Observation">
+						  
+						  <label for="startDate">Start date: </label>
+						  <input id="startDate" type="date" value="2013-01-01">
+						  
+						  <label for="endDate">End date: </label>
+						  <input id="endDate" type="date" value="2013-12-31">
+						  
+						  <label for="species">Species common name: </label>
+						  <input id="species" type="text" value="Cuckoo">
+						  
+						  <input type="submit" onclick=sumbitBasicQuery()>
+						  <div class="progressbar"></div>
+					  </div>
+				  	<h3>Advanced</h3>
+					  <div id="advancedQuery">
+						  
+						  <input type="submit" onclick=sumbitAdvancedQuery()>
+						  <div class="progressbar"></div>
+					  </div>	
+				</div>
+			</div>
+			<div id="visualization">
+				<div id="efforts">
+					<h5 class="category">Sampling Efforts</h5>
+					<input id="effortsOn" type="radio" name="effortsLayer" value="on" onclick=setEffortsLayerVisibility()>On
+					<input id="effortsOff" type="radio" name="effortsLayer" value="off" checked onclick=setEffortsLayerVisibility()>Off
+				</div>
+				<div id="observations">
+					<h5 class="category">Species Observations</h5>
+					<input id="obsOn" type="radio" name="obsLayer" value="on" onclick=setObservationsLayerVisibility()>On
+					<input id="obsOff" type="radio" name="obsLayer" value="off" checked onclick=setObservationsLayerVisibility()>Off
+				</div>
+			</div>
+			</div>
 		</div>
+		<div id="dialog"></div>
 		<div id="map"></div>
 		<div id="attribution"></div>
 
 		<script src="data/earthquake.js"></script>
 		<script src="data/eBird_efforts_China.js"></script>
+		<script src="data/eBird_observations_China_cuckoo.js"></script>
+		<script src="js/dbQuery.js"></script>
 		<script src="js/main.js"></script>
+		<script>
+			$( "#tabs" ).tabs();
+			$( "#sections" ).accordion();
+			
+			var availableCountries = [
+			  "All",
+			  "United States",
+			  "China",
+			  "Japan",
+			  "Canada",
+			  "Mexico"
+			];
+			$( "#country" ).autocomplete({
+			  source: availableCountries
+			});
+				
+			var availableProvinces = [
+			  "All",
+			  "Beijing",
+			  "Hebei",
+			  "Tianjin",
+			  "Wisconsin"
+			];
+			$( "#province" ).autocomplete({
+			  source: availableProvinces
+			});
+			
+			var availableProtocols = [
+			  "All",
+			  "eBird - Casual Observation",
+			  "eBird - Traveling Count"
+			];
+			$( "#protocol" ).autocomplete({
+			  source: availableProtocols
+			});
+			
+			var availableSpeciess = [
+			  "All",
+			  "Cuckoo",
+			];
+			$( "#species" ).autocomplete({
+			  source: availableSpeciess
+			});
+			
+		</script>
 	</body>
 </html>
